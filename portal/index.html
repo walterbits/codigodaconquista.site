@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script>!function(i,n){i._plt=i._plt||(n&&n.timeOrigin?n.timeOrigin+n.now():Date.now())}(window,performance);</script>
+  <link rel="preload" href="https://scripts.converteai.net/a74b87d4-c40b-40d0-90db-c7f5485873a8/players/68c150c8e5729e21c63895cf/v4/player.js" as="script">
+  <link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script">
+  <link rel="dns-prefetch" href="https://cdn.converteai.net">
+  <link rel="dns-prefetch" href="https://scripts.converteai.net">
+  <link rel="dns-prefetch" href="https://images.converteai.net">
+  <link rel="dns-prefetch" href="https://license.vturb.com">
+
+  <!-- UTMIFY -->
+  <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck data-utmify-prevent-subids async defer></script>
+
+  <title>Ao Vivo Agora</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg-page: #f5f5f5;
+      --text-main: #111111;
+      --chat-bg: #ffffff;
+      --border-color: #e5e5e5;
+      --muted-text: #737373;
+    }
+
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      width: 100%;
+      background: #ffffff;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 0 8px;
+      height: 56px;
+      width: 100%;
+    }
+    @media (min-width: 640px) {
+      .header-inner { gap: 16px; padding: 0 16px; }
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+    @media (min-width: 640px) {
+      .header-left { gap: 12px; }
+    }
+
+    .menu-btn {
+      padding: 8px;
+      border-radius: 50%;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .menu-btn:hover { background: #f5f5f5; }
+
+    .logo-box {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+    .logo-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 20px;
+      background: #dc2626;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+    .logo-text {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #171717;
+      white-space: nowrap;
+    }
+    @media (max-width: 360px) {
+      .logo-text { display: none; }
+    }
+    .logo-br {
+      font-size: 10px;
+      color: #737373;
+      margin-left: 2px;
+    }
+
+    /* ✅ Search centralizada e responsiva */
+    .header-center {
+      flex: 1;
+      min-width: 0;
+      max-width: 480px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .search-box {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      height: 36px;
+      border-radius: 9999px;
+      border: 1px solid #d4d4d4;
+      background: #fafafa;
+      overflow: hidden;
+    }
+    @media (min-width: 640px) {
+      .search-box { height: 40px; }
+    }
+    .search-box:focus-within { border-color: #3b82f6; }
+    .search-input {
+      flex: 1;
+      min-width: 0;
+      height: 100%;
+      background: transparent;
+      border: none;
+      padding: 0 10px;
+      font-size: 13px;
+      outline: none;
+      color: #171717;
+    }
+    @media (min-width: 640px) {
+      .search-input { padding: 0 16px; font-size: 14px; }
+    }
+    .search-input::placeholder { color: #737373; }
+    .search-btn {
+      height: 100%;
+      padding: 0 12px;
+      background: #f5f5f5;
+      border: none;
+      border-left: 1px solid #d4d4d4;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .search-btn:hover { background: #e5e5e5; }
+
+    .voice-btn {
+      display: none;
+      height: 36px;
+      width: 36px;
+      border-radius: 50%;
+      background: #f5f5f5;
+      border: none;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    @media (min-width: 640px) {
+      .voice-btn { display: flex; height: 40px; width: 40px; }
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      flex-shrink: 0;
+    }
+    @media (min-width: 640px) {
+      .header-right { gap: 8px; }
+    }
+    .header-icon-btn {
+      position: relative;
+      padding: 8px;
+      border-radius: 50%;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .header-icon-btn:hover { background: #f5f5f5; }
+    @media (min-width: 640px) {
+      .header-icon-btn { display: flex; }
+    }
+    .header-icon-btn.mobile-show { display: flex; }
+    .notif-dot {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #dc2626;
+    }
+    .header-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #8b5cf6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      margin-left: 4px;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    @media (min-width: 640px) {
+      .header-avatar { width: 32px; height: 32px; }
+    }
+
+    /* ===== MAIN ===== */
+    .main-container {
+      margin: 0 auto;
+      padding: 8px;
+      max-width: 896px;
+      width: 100%;
+    }
+    @media (min-width: 480px) {
+      .main-container { padding: 12px; }
+    }
+    @media (min-width: 640px) {
+      .main-container { padding: 24px 16px; }
+    }
+
+    /* ===== PLAYER ===== */
+    .player-wrapper {
+      width: 100%;
+      border-radius: 8px;
+      background: transparent;
+      box-shadow: 0 4px 16px -4px rgba(0,0,0,0.2);
+    }
+    @media (min-width: 640px) {
+      .player-wrapper {
+        border-radius: 16px;
+        box-shadow: 0 10px 40px -10px rgba(0,0,0,0.25);
+      }
+    }
+
+    /* ✅ Garante que o player Vturb v4 seja 100% responsivo */
+    .player-wrapper vturb-smartplayer {
+      display: block !important;
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+
+    /* Remove fundo preto do container CTA */
+    .player-wrapper > div {
+      background: transparent !important;
+      background-color: transparent !important;
+    }
+    .player-wrapper > div > div {
+      background: transparent !important;
+      background-color: transparent !important;
+    }
+
+    /* ===== VIDEO INFO ===== */
+    .video-info {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    @media (min-width: 640px) {
+      .video-info { margin-top: 16px; gap: 10px; }
+    }
+    .video-title {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.35;
+      word-break: break-word;
+      color: var(--text-main);
+    }
+    @media (min-width: 480px) { .video-title { font-size: 16px; } }
+    @media (min-width: 640px) { .video-title { font-size: 20px; } }
+
+    .video-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .channel-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+    .channel-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      min-width: 0;
+    }
+    .channel-name-row {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .channel-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    @media (min-width: 480px) { .channel-name { font-size: 14px; } }
+    @media (min-width: 640px) { .channel-name { font-size: 15px; } }
+
+    .verified-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #737373;
+    }
+    .subscriber-count {
+      font-size: 11px;
+      color: #737373;
+      white-space: nowrap;
+    }
+    @media (min-width: 480px) { .subscriber-count { font-size: 12px; } }
+
+    /* ✅ Live row — empurrado para a direita */
+    .live-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #dc2626;
+      color: #fff;
+      padding: 2px 7px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+    @media (min-width: 480px) {
+      .live-badge { font-size: 11px; padding: 2px 8px; }
+    }
+    .live-dot-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 7px;
+      height: 7px;
+    }
+    .live-dot-ping {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #fff;
+      animation: ping 1.5s cubic-bezier(0,0,0.2,1) infinite;
+      opacity: 0.75;
+    }
+    .live-dot {
+      position: relative;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #fff;
+    }
+    @keyframes ping {
+      75%, 100% { transform: scale(2); opacity: 0; }
+    }
+    .viewer-count {
+      font-size: 11px;
+      color: #737373;
+      white-space: nowrap;
+    }
+    @media (min-width: 480px) { .viewer-count { font-size: 12px; } }
+
+    /* ===== COMENTÁRIO FIXADO ===== */
+    .pinned-comment {
+      border-bottom: 1px solid #e5e5e5;
+      background: #f3f4f6;
+      padding: 8px 12px 10px;
+    }
+    .pinned-label {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      color: #737373;
+      margin-bottom: 7px;
+    }
+    .pinned-label svg { flex-shrink: 0; }
+.pinned-body {
+  display: flex;
+  align-items: flex-start; /* era: center */
+  gap: 8px;
+}
+    .pinned-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #dc2626;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    /* ✅ Pill responsiva — não transborda em telas pequenas */
+.pinned-pill {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  background: #1c1c1c;
+  border-radius: 16px;      /* era: 999px */
+  padding: 6px 14px;
+  min-width: 0;
+  flex: 1;                  /* NOVO — ocupa espaço disponível */
+}
+.pinned-user {
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.pinned-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: #ffffff;
+  white-space: normal;      /* era: nowrap — agora quebra linha */
+  word-break: break-word;   /* NOVO */
+  min-width: 0;
+}
+    @media (min-width: 480px) { .pinned-text { font-size: 13px; } }
+
+    /* ===== AVATAR ===== */
+    .avatar {
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    /* ===== CHAT ===== */
+    .chat-box {
+      margin-top: 10px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      background: var(--chat-bg);
+      overflow: hidden;
+    }
+    @media (min-width: 640px) {
+      .chat-box { margin-top: 16px; border-radius: 16px; }
+    }
+    .chat-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .chat-header-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .chat-pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ef4444;
+      animation: pulse 2s cubic-bezier(0.4,0,0.6,1) infinite;
+      flex-shrink: 0;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    .chat-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: #171717;
+    }
+    @media (min-width: 480px) { .chat-title { font-size: 14px; } }
+    .chat-count {
+      font-size: 11px;
+      color: var(--muted-text);
+      white-space: nowrap;
+    }
+    @media (min-width: 480px) { .chat-count { font-size: 12px; } }
+
+    .chat-messages {
+      height: 240px;
+      overflow-y: auto;
+      padding: 10px 10px;
+      scroll-behavior: smooth;
+      background: #fff;
+    }
+    @media (min-width: 480px) { .chat-messages { height: 270px; padding: 12px 14px; } }
+    @media (min-width: 640px) { .chat-messages { height: 320px; padding: 12px 16px; } }
+
+    .chat-empty {
+      text-align: center;
+      font-size: 13px;
+      color: #a3a3a3;
+      padding: 28px 0;
+    }
+    .chat-msg {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 12px;
+      animation: fadeSlide 0.3s ease;
+    }
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(4px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .chat-msg:last-child { margin-bottom: 0; }
+    .chat-msg-body {
+      flex: 1;
+      min-width: 0;
+      line-height: 1.4;
+    }
+    .chat-msg-user {
+      font-size: 11px;
+      font-weight: 600;
+      color: #8a8a8a;
+    }
+    @media (min-width: 480px) { .chat-msg-user { font-size: 12px; } }
+    .chat-msg-text {
+      font-size: 13px;
+      color: #171717;
+      word-break: break-word;
+    }
+    @media (min-width: 480px) { .chat-msg-text { font-size: 14px; } }
+
+    .chat-footer {
+      padding: 10px 14px;
+      border-top: 1px solid #f0f0f0;
+      background: #fafafa;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--muted-text);
+    }
+    @media (min-width: 480px) { .chat-footer { font-size: 12px; padding: 12px 16px; } }
+  </style>
+</head>
+<body>
+
+  <!-- Meta Pixel -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1008555880852696');
+  fbq('init', '1575656957036278');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1008555880852696&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel -->
+
+  <!-- Google tag -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DG4WVV0063"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-DG4WVV0063');
+  </script>
+
+  <!-- Back redirect -->
+  <script>
+    const link = 'https://romancenet.site//backh/?src=saidadapv';
+    function setBackRedirect(url) {
+      let urlBackRedirect = url.trim();
+      const currentParams = document.location.search.replace('?', '');
+      if (currentParams) {
+        urlBackRedirect += (urlBackRedirect.indexOf('?') > 0 ? '&' : '?') + currentParams;
+      }
+      if (window.history && window.history.pushState) {
+        for (let i = 0; i < 3; i++) { history.pushState(null, '', location.href); }
+        window.addEventListener('popstate', function() {
+          history.pushState(null, '', location.href);
+          setTimeout(function() { window.location.href = urlBackRedirect; }, 10);
+        }, false);
+        window.addEventListener('pageshow', function(e) {
+          if (e.persisted) { history.pushState(null, '', location.href); }
+        });
+      }
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() { setBackRedirect(link); });
+    } else {
+      setBackRedirect(link);
+    }
+  </script>
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="header-inner">
+      <div class="header-left">
+        <button class="menu-btn" aria-label="Menu">
+          <svg height="20" width="20" viewBox="0 0 24 24" fill="currentColor" style="color:#404040">
+            <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/>
+          </svg>
+        </button>
+        <div class="logo-box">
+          <div class="logo-icon" id="logoIcon">
+            <svg viewBox="0 0 24 24" height="12" width="12" fill="#fff">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+          <span class="logo-text" id="logoText">YouTube</span>
+          <span class="logo-br">BR</span>
+        </div>
+      </div>
+
+      <div class="header-center">
+        <div class="search-box">
+          <input type="text" class="search-input" placeholder="Pesquisar">
+          <button class="search-btn" aria-label="Pesquisar">
+            <svg height="15" width="15" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+            </svg>
+          </button>
+        </div>
+        <button class="voice-btn" aria-label="Pesquisar por voz">
+          <svg height="20" width="20" viewBox="0 0 24 24" fill="#404040">
+            <path d="M12 14a3 3 0 003-3V5a3 3 0 10-6 0v6a3 3 0 003 3zm5-3a5 5 0 01-10 0H5a7 7 0 006 6.92V21h2v-3.08A7 7 0 0019 11h-2z"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="header-right">
+        <button class="header-icon-btn" aria-label="Criar">
+          <svg height="20" width="20" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 5v14M5 12h14"/>
+          </svg>
+        </button>
+        <button class="header-icon-btn mobile-show" aria-label="Notificações">
+          <svg height="20" width="20" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 10-12 0v3.2c0 .5-.2 1-.6 1.4L4 17h5m6 0a3 3 0 11-6 0"/>
+          </svg>
+          <span class="notif-dot"></span>
+        </button>
+        <div class="header-avatar">
+          <img src="./img/usuario.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== CONTEÚDO PRINCIPAL ===== -->
+  <div class="main-container" id="mainContainer">
+
+    <!-- Player -->
+    <div class="player-wrapper" id="playerWrapper">
+      <vturb-smartplayer id="vid-68c150c8e5729e21c63895cf" style="display:block;margin:0 auto;width:100%;"></vturb-smartplayer>
+      <script type="text/javascript">
+        var s = document.createElement("script");
+        s.src = "https://scripts.converteai.net/a74b87d4-c40b-40d0-90db-c7f5485873a8/players/68c150c8e5729e21c63895cf/v4/player.js";
+        s.async = true;
+        document.head.appendChild(s);
+      </script>
+    </div>
+
+    <!-- Info -->
+    <div class="video-info">
+      <h1 class="video-title" id="videoTitle">AO VIVO - Não saia daqui!</h1>
+      <div class="video-meta">
+        <div class="channel-info">
+          <div class="avatar" id="channelAvatar" style="width:38px;height:38px;font-size:17px;background:#dc2626;flex-shrink:0;">C</div>
+          <div class="channel-details">
+            <div class="channel-name-row">
+              <span class="channel-name" id="channelName">Canal Oficial</span>
+              <span class="verified-badge" title="Canal verificado">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5l-4-4 1.41-1.41L10 13.67l6.59-6.59L18 8.5l-8 8z"/>
+                </svg>
+              </span>
+            </div>
+            <span class="subscriber-count" id="subscriberCount">400 mil inscritos</span>
+          </div>
+        </div>
+        <div class="live-row">
+          <span class="live-badge">
+            <span class="live-dot-wrap">
+              <span class="live-dot-ping"></span>
+              <span class="live-dot"></span>
+            </span>
+            AO VIVO
+          </span>
+          <span class="viewer-count" id="viewerCount">747 assistindo agora</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chat -->
+    <div class="chat-box">
+      <div class="chat-header">
+        <div class="chat-header-left">
+          <div class="chat-pulse"></div>
+          <span class="chat-title">Chat ao vivo</span>
+        </div>
+        <span class="chat-count" id="msgCount">0 mensagens</span>
+      </div>
+
+      <!-- Comentário fixado -->
+      <div class="pinned-comment" id="pinnedComment">
+        <div class="pinned-label">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="#737373"><path d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z"/></svg>
+          Afixado por <span id="pinnedByName">@PedroSantos</span>
+        </div>
+        <div class="pinned-body">
+          <div class="pinned-avatar" id="pinnedAvatar">P</div>
+          <div class="pinned-pill">
+            <span class="pinned-user" id="pinnedUser">@PedroSantos</span>
+            <span class="pinned-text">ASSISTA O VÍDEO PARA LIBERAR AS MENSAGENS</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="chat-messages" id="chatMessages">
+        <div class="chat-empty">Aguardando mensagens...</div>
+      </div>
+      <div class="chat-footer">
+        <svg height="14" width="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+          <path d="M7 11V7a5 5 0 0110 0v4"/>
+        </svg>
+        Chat exclusivo para membros do canal
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ============================================================
+    // ⚙️  CONFIGURAÇÕES — EDITE AQUI
+    // ============================================================
+
+    document.documentElement.style.setProperty('--bg-page', '#f5f5f5');
+    document.documentElement.style.setProperty('--text-main', '#111111');
+
+    const LOGO_IMG  = "./img/tube.png";
+    const LOGO_TEXT = "";
+
+    const VIDEO_TITLE    = "Descubra o SEGREDO usado pelos homens mais poderosos de HOLLYWOOD para seduzir qualquer MULHER";
+    const CHANNEL_NAME   = "Pedro Santos";
+    const CHANNEL_AVATAR = "./img/expect.png";
+    const SUBSCRIBERS    = "453 mil inscritos";
+    const VIEWERS_START  = 1247;
+
+const COMMENTS = [
+      { time: 3,   user: "Carlos Silva",  text: "Cheguei! 🔥",                                color: "#3b82f6", avatar: "./img/h1.jpeg" },
+      { time: 7,   user: "Mariano F.",    text: "fala pessoal",                           color: "#ec4899", avatar: "./img/h2.jpeg" },
+      { time: 12,  user: "João Pedro",    text: "Esperando há 10 min, vale a pena!",           color: "#10b981", avatar: "" },
+      { time: 18,  user: "Gustavo Nunes",     text: "Muito animado! vamos!! 🙌", color: "#f59e0b", avatar: "./img/h3.jpeg" },
+      { time: 25,  user: "Rodrigo M.",    text: "Tá explicando muito bem",                     color: "#8b5cf6", avatar: "./img/h4.jpeg" },
+      { time: 32,  user: "Fernando Oli",  text: "Alguém mais do RJ aqui?",                     color: "#ef4444", avatar: "" },
+      { time: 38,  user: "Lucas Dev",     text: "Brasília presente 👋",                        color: "#06b6d4", avatar: "./img/h6.jpeg" },
+      { time: 45,  user: "Paulo",      text: "Agora pega as gatas ficou fácil🚀",                    color: "#84cc16", avatar: "" },
+      { time: 52,  user: "Marcos VR",     text: "@Paulo espera ele falar, vem aí",          color: "#f97316", avatar: "./img/h7.jpeg" },
+      { time: 60,  user: "Juliano S.",    text: "Esse método funciona mesmo, recomendo",       color: "#ec4899", avatar: "./img/h8.jpeg" },
+      { time: 68,  user: "Bruno Costa",   text: "MELHOR LIVE DO ANO 🚀🚀",                     color: "#3b82f6", avatar: "" },
+      { time: 75,  user: "Camila R.",     text: "Não sei como vivi tanto tempo sem saber disso. É o segredo para prender a atenção de qualquer mulher.",                       color: "#10b981", avatar: "./img/h10.jpeg" },
+      { time: 83,  user: "Diego P.",      text: "Quero garantir o meu",                        color: "#8b5cf6", avatar: "" },
+      { time: 92,  user: "Renato Alves",  text: "Compartilhando com meu irmão agora",         color: "#f59e0b", avatar: "./img/h11.jpg" },
+      { time: 100, user: "Thiago M.",     text: "Link onde?",                                  color: "#ef4444", avatar: "./img/h12.jpg" },
+      { time: 108, user: "Valdir",       text: "@Thiago vai aparecer logo abaixo no final",            color: "#06b6d4", avatar: "./img/h13.jpg" },
+      { time: 116, user: "Gabriel S.",    text: "Conteúdo de outro nível 🔥",                  color: "#84cc16", avatar: "" },
+      { time: 125, user: "Leonardo F.",    text: "Gostando muito, top demais",          color: "#f97316", avatar: "./img/h14.jpg" },
+      { time: 134, user: "Henrique P.",   text: "Fiz e deu certo pensei que era conversa muito bom 👍",              color: "#ec4899", avatar: "./img/h15.jpg" },
+      { time: 142, user: "Isac M.",    text: "@Henrique eu, 3 semanas e já paguei",         color: "#3b82f6", avatar: "" },
+      { time: 150, user: "Rafael Dev",    text: "Que oferta absurda hahaha",                   color: "#10b981", avatar: "./img/h16.jpg" },
+      { time: 160, user: "Bernardo S.",    text: "Tá todo mundo falando desse vídeo!! Deve funcionar né",                      color: "#8b5cf6", avatar: "./img/h17.jpg" },
+      { time: 170, user: "Felipe M.",     text: "Vamos que vamos 💪",                          color: "#f59e0b", avatar: "" },
+      { time: 180, user: "Junior R.",     text: "Obrigada pelo conteúdo!",                     color: "#ef4444", avatar: "./img/h18.jpg" },
+    ];
+
+    const AVATAR_BG_COLORS = [
+      "#8b5cf6","#3b82f6","#10b981","#f59e0b",
+      "#ef4444","#ec4899","#06b6d4","#84cc16","#f97316",
+    ];
+
+    // ============================================================
+    // 🚫 NÃO EDITE ABAIXO
+    // ============================================================
+
+    function getInitials(name) { return name.trim().charAt(0).toUpperCase(); }
+
+    function getAvatarColor(name, color) {
+      if (color) return color;
+      let sum = 0;
+      for (let i = 0; i < name.length; i++) sum += name.charCodeAt(i);
+      return AVATAR_BG_COLORS[sum % AVATAR_BG_COLORS.length];
+    }
+
+    function createAvatar(name, src, color, size) {
+      if (src) {
+        const img = document.createElement('img');
+        img.src = src; img.alt = name; img.className = 'avatar';
+        img.style.width = size + 'px'; img.style.height = size + 'px';
+        return img;
+      }
+      const div = document.createElement('div');
+      div.className = 'avatar';
+      div.style.width      = size + 'px';
+      div.style.height     = size + 'px';
+      div.style.fontSize   = (size * 0.45) + 'px';
+      div.style.background = getAvatarColor(name, color);
+      div.textContent      = getInitials(name);
+      return div;
+    }
+
+    // Logo
+    document.getElementById('logoText').textContent = LOGO_TEXT;
+    if (LOGO_IMG) {
+      const logoIcon = document.getElementById('logoIcon');
+      logoIcon.innerHTML = '';
+      logoIcon.style.background = 'transparent';
+      logoIcon.style.overflow = 'hidden';
+      const logoImg = document.createElement('img');
+      logoImg.src = LOGO_IMG; logoImg.alt = LOGO_TEXT;
+      logoImg.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;border-radius:4px;';
+      logoIcon.appendChild(logoImg);
+    }
+
+    // Textos
+    document.getElementById('videoTitle').textContent      = VIDEO_TITLE;
+    document.getElementById('channelName').textContent     = CHANNEL_NAME;
+    document.getElementById('subscriberCount').textContent = SUBSCRIBERS;
+
+    // Comentário fixado
+    const pinnedHandle = '@' + CHANNEL_NAME.replace(/\s+/g, '');
+    document.getElementById('pinnedUser').textContent   = pinnedHandle;
+    document.getElementById('pinnedByName').textContent = pinnedHandle;
+    const pinnedAvatarEl = document.getElementById('pinnedAvatar');
+    if (CHANNEL_AVATAR) {
+      pinnedAvatarEl.innerHTML = '';
+      pinnedAvatarEl.style.background = 'transparent';
+      pinnedAvatarEl.style.overflow = 'hidden';
+      const pImg = document.createElement('img');
+      pImg.src = CHANNEL_AVATAR; pImg.alt = CHANNEL_NAME;
+      pImg.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;border-radius:50%;';
+      pinnedAvatarEl.appendChild(pImg);
+    } else {
+      pinnedAvatarEl.textContent = getInitials(CHANNEL_NAME);
+    }
+
+    // Avatar do canal
+    const chAvatar = document.getElementById('channelAvatar');
+    if (CHANNEL_AVATAR) {
+      chAvatar.innerHTML = '';
+      chAvatar.style.background = 'transparent';
+      chAvatar.style.overflow = 'hidden';
+      const img = document.createElement('img');
+      img.src = CHANNEL_AVATAR; img.alt = CHANNEL_NAME;
+      img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;border-radius:50%;';
+      chAvatar.appendChild(img);
+    } else {
+      chAvatar.textContent = getInitials(CHANNEL_NAME);
+    }
+
+    // Chat
+    const chatMessages = document.getElementById('chatMessages');
+    const msgCount     = document.getElementById('msgCount');
+    const viewerEl     = document.getElementById('viewerCount');
+    let viewers = VIEWERS_START;
+    let elapsed = 0;
+    let visibleComments = [];
+    const startTime = Date.now();
+
+    function renderComments() {
+      if (visibleComments.length === 0) {
+        chatMessages.innerHTML = '<div class="chat-empty">Aguardando mensagens...</div>';
+        msgCount.textContent = '0 mensagens';
+        return;
+      }
+      chatMessages.innerHTML = '';
+      visibleComments.forEach((c) => {
+        const msg = document.createElement('div');
+        msg.className = 'chat-msg';
+        msg.appendChild(createAvatar(c.user, c.avatar || '', c.color, 30));
+        const body = document.createElement('div');
+        body.className = 'chat-msg-body';
+        const user = document.createElement('div');
+        user.className = 'chat-msg-user';
+        user.textContent = '@' + c.user.replace(/\s+/g, '');
+        const text = document.createElement('div');
+        text.className = 'chat-msg-text';
+        text.textContent = c.text;
+        body.appendChild(user);
+        body.appendChild(text);
+        msg.appendChild(body);
+        chatMessages.appendChild(msg);
+      });
+      const total = visibleComments.length;
+      msgCount.textContent = total + ' mensagen' + (total === 1 ? '' : 's');
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    setInterval(() => {
+      elapsed = Math.floor((Date.now() - startTime) / 1000);
+      viewers += Math.floor(Math.random() * 5) - 1;
+      viewerEl.textContent = viewers.toLocaleString('pt-BR') + ' assistindo agora';
+      const newVisible = COMMENTS.filter(c => c.time <= elapsed);
+      if (newVisible.length !== visibleComments.length) {
+        visibleComments = newVisible;
+        renderComments();
+      }
+    }, 1000);
+
+    // Desabilita PiP
+    function disablePiP() {
+      document.querySelectorAll('video').forEach(function(v) {
+        v.disablePictureInPicture = true;
+        v.setAttribute('disablepictureinpicture', '');
+        v.setAttribute('controlslist', 'nodownload nofullscreen noremoteplayback');
+      });
+    }
+    disablePiP();
+    const pipObserver = new MutationObserver(disablePiP);
+    pipObserver.observe(document.body, { childList: true, subtree: true });
+  </script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <style>
+    @font-face {
+      font-family: Gotham Rounded;
+      src: url("font.otf") format("opentype");
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      font-family: Gotham Rounded;
+    }
+    body {
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100vw;
+      height: 100vh;
+      background: url("fundo.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    .container {
+      width: 700px;
+      max-width: 90%;
+    }
+    .progress-bar {
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 15px;
+      height: 12px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    }
+    .progress-fill {
+      height: 100%;
+      background-color: #047b10;
+      width: 0%;
+      transition: width 0.3s ease-in-out;
+    }
+    .black {
+      background-color: lightgray;
+      padding: 10px;
+      text-align: center;
+      border-radius: 20px;
+      box-shadow: 0 0 10px 2px;
+    }
+    .answer {
+      display: grid;
+      grid-template-columns: repeat(2, auto);
+      gap: 10px;
+    }
+    @media (max-width: 991px) {
+      .answer {
+        display: grid;
+        grid-template-columns: repeat(1, auto);
+        gap: 10px;
+      }
+    }
+    .btn {
+      border-radius: 10px;
+      padding: 5px 10px;
+      font-size: 30px;
+      background-color: #047b10;
+      outline: none;
+      text-decoration: inherit;
+      color: white;
+    }
+    .black h4 {
+      color: black;
+      font-size: 18px;
+    }
+    .black p {
+      font-size: 22px;
+      color: black;
+    }
+    .hide {
+      display: none;
+    }
+    .footer {
+      margin-top: 48px;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body> 
+  <div class="container">
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+    <div class="black">
+      <div id="primeira">
+        <div class="question">
+          <h4>Pergunta 1</h4>
+          <p>Já mandou mensagem e ela te ignorou?</p>
+        </div>
+        <div class="answer">
+          <button class="btn" onclick="segunda()">SIM</button>
+          <button class="btn" onclick="segunda()">NÃO</button>
+        </div>
+      </div>
+      <div id="segunda" class="hide">
+        <div class="question">
+          <h4>Pergunta 2</h4>
+          <p>Quer que ela fique ansiosa pela sua mensagem?</p>
+        </div>
+        <div class="answer">
+          <button class="btn" onclick="terceira()">SIM</button>
+          <button class="btn" onclick="terceira()">NÃO</button>
+        </div>
+      </div>
+      <div id="terceira" class="hide">
+        <div class="question">
+          <h4>Pergunta 3</h4>
+          <p>Acredita que palavras podem despertar desejo?</p>
+        </div>
+        <div class="answer">
+          <button class="btn" onclick="quarta()">SIM</button>
+          <button class="btn" onclick="quarta()">NÃO</button>
+        </div>
+      </div>
+      <div id="quarta" class="hide">
+        <div class="question">
+          <h4>Pergunta 4</h4>
+          <p>Já tentou reconquistar alguém e não conseguiu?</p>
+        </div>
+        <div class="answer">
+          <button class="btn" onclick="quinta()">SIM</button>
+          <button class="btn" onclick="quinta()">NÃO</button>
+        </div>
+      </div>
+      <div id="quinta" class="hide">
+        <div class="question">
+          <h4>Pergunta 5</h4>
+          <p>Quer saber que texto faz até sua ex te chamar de volta?</p>
+        </div>
+        <div class="answer">
+          <button class="btn" onclick="redirect()">SIM</button>
+          <button class="btn" onclick="redirect()">NÃO</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <p>© 2025 – Todos os direitos reservados. Este site não faz parte nem é endossado pelo Facebook. Facebook é uma marca comercial da Facebook, Inc.</p>
+      <p><a href="https://textosquegeramdesejos.site/termos" style="color: black;">Termos de Uso</a> | <a href="https://textosquegeramdesejos.site/privacidade" style="color: black;">Política de Privacidade</a></p>
+    </div>
+  </div>
+  <script>
+    function updateProgress(percent) {
+      document.getElementById("progressFill").style.width = percent + "%";
+    }
+
+    function segunda() {
+      document.getElementById("primeira").classList.add("hide")
+      document.getElementById("segunda").classList.remove("hide")
+      updateProgress(20);
+    }
+    function terceira() {
+      document.getElementById("segunda").classList.add("hide")
+      document.getElementById("terceira").classList.remove("hide")
+      updateProgress(40);
+    }
+    function quarta() {
+      document.getElementById("terceira").classList.add("hide")
+      document.getElementById("quarta").classList.remove("hide")
+      updateProgress(60);
+    }
+    function quinta() {
+      document.getElementById("quarta").classList.add("hide")
+      document.getElementById("quinta").classList.remove("hide")
+      updateProgress(80);
+    }
+    function redirect() {
+      updateProgress(100);
+      location.href = "https://textosquegeramdesejos.site/"
+    }
+  </script>
+</body>
+</html>
