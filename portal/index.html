@@ -21,14 +21,107 @@
 <link rel="dns-prefetch" href="https://license.vturb.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <!-- Pré-carregamento dos depoimentos evita quadros vazios durante navegação rápida. -->
-  <link rel="preload" as="image" href="assets/testimonial-1.webp" fetchpriority="high">
-  <link rel="preload" as="image" href="assets/testimonial-2.webp" fetchpriority="high">
-  <link rel="preload" as="image" href="assets/testimonial-3.webp" fetchpriority="high">
-  <link rel="preload" as="image" href="assets/testimonial-4.webp" fetchpriority="high">
-  <link rel="preload" as="image" href="assets/testimonial-5.webp" fetchpriority="high">
   <link rel="stylesheet" href="style.css">
+
+   <!-- =========================================
+       GOOGLE ANALYTICS
+       ========================================= -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DG4WVV0063"></script>
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'G-DG4WVV0063');
+  </script>
+
+
+<!-- =========================================
+     META PIXEL
+     ========================================= -->
+<script>
+  !function(f, b, e, v, n, t, s) {
+    if (f.fbq) return;
+
+    n = f.fbq = function() {
+      n.callMethod
+        ? n.callMethod.apply(n, arguments)
+        : n.queue.push(arguments);
+    };
+
+    if (!f._fbq) {
+      f._fbq = n;
+    }
+
+    n.push = n;
+    n.loaded = true;
+    n.version = '2.0';
+    n.queue = [];
+
+    t = b.createElement(e);
+    t.async = true;
+    t.src = v;
+
+    s = b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t, s);
+
+  }(
+    window,
+    document,
+    'script',
+    'https://connect.facebook.net/en_US/fbevents.js'
+  );
+
+  /* Pixel 1 */
+  fbq('init', '1008555880852696');
+
+  /* Pixel 2 */
+  fbq('init', '1575656957036278');
+
+  /* Envia o evento PageView para os dois pixels */
+  fbq('track', 'PageView');
+</script>
+<!-- FIM DO META PIXEL -->
+
+
+  <!-- =========================================
+       UTMIFY — UTMs COMPATÍVEIS COM VTURB
+       ========================================= -->
+  <script
+    src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+    data-utmify-prevent-xcod-sck
+    data-utmify-prevent-subids
+    data-utmify-ignore-retry
+    data-utmify-ignore-iframe
+    async
+    defer
+  ></script>
+
 </head>
 <body>
+
+  <!-- META PIXEL: FALLBACK PARA NAVEGADORES SEM JAVASCRIPT -->
+  <noscript>
+    <img
+      height="1"
+      width="1"
+      style="display:none"
+      src="https://www.facebook.com/tr?id=1008555880852696&ev=PageView&noscript=1"
+      alt=""
+    >
+
+    <img
+      height="1"
+      width="1"
+      style="display:none"
+      src="https://www.facebook.com/tr?id=1575656957036278&ev=PageView&noscript=1"
+      alt=""
+    >
+  </noscript>
   <!--
     GUIA RÁPIDO DE EDIÇÃO:
     1) Procure no arquivo por "ALTERE AQUI" para encontrar os textos, imagens e valores editáveis.
@@ -479,5 +572,56 @@
 
   <!-- FUNÇÕES DA PÁGINA: checkout, pop-ups, carrosséis, contador e animações. -->
   <script src="script.js"></script>
+  <script>
+  // ALTERE O LINK PARA A PÁGINA DE REDIRECIONAMENTO
+  const link = 'https://checkout.payt.com.br/737a537f303663d1b566116bceeb7341?src=saidadapv';
+  
+  function setBackRedirect(url) {
+    // Preserva parâmetros da URL atual
+    let urlBackRedirect = url.trim();
+    const currentParams = document.location.search.replace('?', '');
+    
+    if (currentParams) {
+      urlBackRedirect += (urlBackRedirect.indexOf('?') > 0 ? '&' : '?') + currentParams;
+    }
+    
+    // Adiciona múltiplas entradas no histórico
+    if (window.history && window.history.pushState) {
+      // Adiciona entradas extras no histórico
+      for (let i = 0; i < 3; i++) {
+        history.pushState(null, '', location.href);
+      }
+      
+      // Event listener para detectar o botão voltar
+      window.addEventListener('popstate', function(e) {
+        // Previne o comportamento padrão
+        history.pushState(null, '', location.href);
+        
+        // Redireciona
+        setTimeout(function() {
+          window.location.href = urlBackRedirect;
+        }, 10);
+      }, false);
+      
+      // Suporte adicional para iOS
+      window.addEventListener('pageshow', function(e) {
+        if (e.persisted) {
+          history.pushState(null, '', location.href);
+        }
+      });
+    }
+  }
+  
+  // Executa quando o DOM estiver pronto
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      setBackRedirect(link);
+    });
+  } else {
+    setBackRedirect(link);
+  }
+
+            
+</script> 
 </body>
 </html>
